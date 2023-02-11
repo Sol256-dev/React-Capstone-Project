@@ -4,15 +4,16 @@ import App from "./App";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import "./index.css";
 import ErrorPage from "./components/ErrorPage";
 import Movies from "./routes/Movies";
+import Tvshows from "./routes/Tvshows";
+import './index.css';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    errorElement: <ErrorPage />,
+    // errorElement: <ErrorPage />,
     children: [
       {
         path: "/movies",
@@ -20,7 +21,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/tvshows",
-        element: <h1>TV Shows</h1>,
+        element: <Tvshows />,
       },
       {
         path: "/action",

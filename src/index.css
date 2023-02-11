@@ -12,5 +12,14 @@ a:focus {
 }
 
 .main {
-    margin: 1em 1em;
+    margin: 2em 2em;
+    display: flex;
+    flex-direction: column;
+    /* gap: .5em; */
+}
+
+.section {
+    display: flex;
+    gap: .5em;
+    overflow-y: scroll;
 }
