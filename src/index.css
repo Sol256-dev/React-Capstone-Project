@@ -1,5 +1,14 @@
-.nav-bar {
-    color: ghostwhite;
+a {
+    text-decoration: none;
+    color:darkslategray;
+}
+
+a:hover {
+    color:brown;
+}
+
+a:focus {
+    color: chocolate;
 }
 
 .main {

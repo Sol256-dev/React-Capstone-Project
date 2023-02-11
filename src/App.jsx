@@ -1,4 +1,4 @@
-import MovieCard from "./components/MovieCard";
+import { Outlet } from "react-router-dom";
 import NavigationBar from "./components/NavigationBar";
 
 function App() {
@@ -6,7 +6,7 @@ function App() {
     <>
       <NavigationBar />
       <div className="main">
-        <MovieCard />
+        <Outlet/>
       </div>
     </>
   );
