@@ -4,12 +4,16 @@ import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import { Link } from "react-router-dom";
+import Movies from "../routes/Movies";
 
 const NavigationBar = () => {
   return (
     <Navbar bg="light" className="nav-bar" expand="lg">
       <Container fluid>
-        <Navbar.Brand href="#">KCF Movie Library</Navbar.Brand>
+        <Navbar.Brand>
+          <Link to="/">KCF Movie Library</Link>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -17,18 +21,18 @@ const NavigationBar = () => {
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
-            <Nav.Link href="#action1">Movies</Nav.Link>
-            <Nav.Link href="#action2">TV Shows</Nav.Link>
+            <Nav.Link>
+              <Link to="/movies">Movies</Link>
+            </Nav.Link>
+            <Nav.Link ><Link to="/tvshows">TV Shows</Link></Nav.Link>
             <NavDropdown title="Categories" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action3">Comedy</NavDropdown.Item>
-              <NavDropdown.Item href="#action3">Horror</NavDropdown.Item>
-              <NavDropdown.Item href="#action4">
-                Thriller
-              </NavDropdown.Item>
+              <NavDropdown.Item ><Link to="/action">Action</Link></NavDropdown.Item>
+              <NavDropdown.Item ><Link to="/comedy">Comedy</Link></NavDropdown.Item>
+              <NavDropdown.Item ><Link to="/horror">Horror</Link></NavDropdown.Item>
+              <NavDropdown.Item ><Link to="/thriller">Thriller</Link></NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action5">
-                Just for the kids
+                <Link to="/kids">Just for the kids</Link>
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>
