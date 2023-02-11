@@ -4,13 +4,20 @@ import Card from "react-bootstrap/Card";
 const TrendingMovies = (props) => {
   return (
     <>
-      <Card className="movie-card" style={{ width: "18rem" }}>
-        {/* <Card.Img variant="top" src="https://www.google.com" /> */}
-        <Card.Body>
-          <Card.Title>{props.title}</Card.Title>
-          <Card.Text>{props.overview}</Card.Text>
-        </Card.Body>
+      <Card
+        style={{
+          width: "11rem",
+          fontSize: ".8rem",
+          height: "20.6em",
+        }}
+      >
+        <Card.Img
+          variant="top"
+          src={`https://image.tmdb.org/t/p/w500/${props.poster}`}
+        />
+        <Card.Body></Card.Body>
       </Card>
+      <div className="moviedetails"></div>
     </>
   );
 };

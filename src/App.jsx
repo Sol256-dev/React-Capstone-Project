@@ -39,7 +39,7 @@ function App() {
         <div className="section">
           {movies.map((item, key) => (
             <div>
-              <TrendingMovies title={item.title} overview={item.overview} />
+              <TrendingMovies title={item.title} overview={item.overview} poster={item.poster_path}/>
             </div>
           ))}
         </div>
