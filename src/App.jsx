@@ -35,11 +35,11 @@ function App() {
     <>
       <NavigationBar />
       <div className="main">
-        <h4>Trending Movies & Shows</h4>
+        <h4>Trending Movies & TV Shows</h4>
         <div className="section">
           {movies.map((item, key) => (
             <div>
-              <TrendingMovies title={item.title} overview={item.overview} poster={item.poster_path}/>
+              <TrendingMovies title={item.title} media_type={item.media_type} score={item.vote_average} overview={item.overview} poster={item.poster_path}/>
             </div>
           ))}
         </div>
