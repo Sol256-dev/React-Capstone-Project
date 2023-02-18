@@ -11,11 +11,11 @@ const Home = () => {
 
   const fetchData = () => {
     const trendingShows =
-      "https://api.themoviedb.org/3/trending/all/week?api_key=31366e0b7b440ee4784ea1e0f129e1da";
+      `https://api.themoviedb.org/3/trending/all/week?api_key=${import.meta.env.VITE_TMBD_API_KEY}`;
     const upcomingMovies =
-      "https://api.themoviedb.org/3/movie/upcoming?api_key=31366e0b7b440ee4784ea1e0f129e1da&language=en-US&page=10";
+      `https://api.themoviedb.org/3/movie/upcoming?api_key=${import.meta.env.VITE_TMBD_API_KEY}&language=en-US&page=10`;
     const topRatedMovies =
-      "https://api.themoviedb.org/3/movie/top_rated?api_key=31366e0b7b440ee4784ea1e0f129e1da&language=en-US&page=10";
+      `https://api.themoviedb.org/3/movie/top_rated?api_key=${import.meta.env.VITE_TMBD_API_KEY}&language=en-US&page=10`;
 
     const getTrendingShows = axios.get(trendingShows);
     const getUpcomingMovies = axios.get(upcomingMovies);
@@ -29,7 +29,7 @@ const Home = () => {
 
         setTrendingItems(allDataTrending);
         setUpcomingItems(allDataUpcomingMovies);
-        setTopRated(allDataTopRated)
+        setTopRated(allDataTopRated);
         allDataTrending.map((item) => console.log(item));
         // console.log(allDataUpcomingMovies);
       })
