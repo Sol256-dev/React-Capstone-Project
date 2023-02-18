@@ -1,14 +1,15 @@
 a {
     text-decoration: none;
-    color: darkslategray;
+    color:black;
+    transition: ease-in-out .1s;
 }
 
 a:hover {
-    color: brown;
+    color:cadetblue;
 }
 
 a:focus {
-    color: chocolate;
+    color:teal;
 }
 
 .main {
@@ -44,4 +45,11 @@ a:focus {
 
 .video-type {
     gap: 2em;
+}
+
+.user-details {
+    margin: 0.3em .8em;
+    align-items: center;
+    gap: .3em;
+    display: flex; 
 }
