@@ -16,7 +16,7 @@ function App() {
           <Footer />
         </>
       ) : (
-        navigate("/")
+        navigate("/login")
       )}
     </>
   );
