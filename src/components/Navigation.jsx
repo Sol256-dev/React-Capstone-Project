@@ -4,8 +4,8 @@ import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import { Link } from "react-router-dom";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { Link } from "react-router-dom";
 
 const NavigationBar = (props) => {
   const handleLogout = (event) => {
@@ -14,7 +14,11 @@ const NavigationBar = (props) => {
     window.location.reload(true);
   };
   return (
-    <Navbar style={{backgroundColor:"red", color:"black"}} bg="light" expand="lg">
+    <Navbar
+      style={{ backgroundColor: "red", color: "black" }}
+      bg="light"
+      expand="lg"
+    >
       <Container fluid>
         <Navbar.Brand>
           <Link to="/">KCF Movie Library</Link>
@@ -32,7 +36,7 @@ const NavigationBar = (props) => {
             <Nav.Link>
               <Link to="/tvshows">TV Shows</Link>
             </Nav.Link>
-            <NavDropdown title="Categories" id="navbarScrollingDropdown">
+            {/* <NavDropdown title="Categories" id="navbarScrollingDropdown">
               <NavDropdown.Item>
                 <Link to="/action">Action</Link>
               </NavDropdown.Item>
@@ -49,7 +53,7 @@ const NavigationBar = (props) => {
               <NavDropdown.Item href="#action5">
                 <Link to="/kids">Just for the kids</Link>
               </NavDropdown.Item>
-            </NavDropdown>
+            </NavDropdown> */}
           </Nav>
           <div className="user-details">
             <div>
@@ -65,6 +69,9 @@ const NavigationBar = (props) => {
                 <Button variant="outlined-secondary" onClick={handleLogout}>
                   Logout
                 </Button>
+              </NavDropdown.Item>
+              <NavDropdown.Item>
+                <Link to="/add-movie">Add movie</Link>
               </NavDropdown.Item>
             </NavDropdown>
           </div>

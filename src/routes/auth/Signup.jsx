@@ -10,13 +10,14 @@ import {
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import React, { useContext, useState } from "react";
-import { auth } from "../../firebase/Firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const Signup = () => {
   //   const [userNameDetails, setUserNameDetails] = useState();
   const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [values, setValues] = useState({
     email: "",
@@ -33,15 +34,18 @@ const Signup = () => {
 
   //   localStorage.setItem("key", userNameDetails);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        console.log(userCredential);
-      })
-      .catch((error) => {
-        console.log(error);
+    try {
+      await axios.post("http://localhost:3000/api/v1/users/register", {
+        name,
+        username,
+        email,
+        password,
       });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -55,10 +59,37 @@ const Signup = () => {
           style={{ minHeight: "100vh" }}
         >
           <Paper elelvation={2} sx={{ padding: 5 }}>
-            <h3>KCF Video Library</h3>
             <form onSubmit={handleSubmit}>
               <h4>Sign up form</h4>
               <Grid container direction="column" spacing={2}>
+                <Grid item>
+                  <TextField
+                    type="text"
+                    fullWidth
+                    id="username"
+                    value={username}
+                    label="Username"
+                    placeholder="Enter Username"
+                    variant="outlined"
+                    onChange={(event) => setUsername(event.target.value)}
+                    required
+                  />
+                </Grid>
+
+                <Grid item>
+                  <TextField
+                    type="text"
+                    fullWidth
+                    id="name"
+                    value={name}
+                    label="Name"
+                    placeholder="Enter name"
+                    variant="outlined"
+                    onChange={(event) => setName(event.target.value)}
+                    required
+                  />
+                </Grid>
+
                 <Grid item>
                   <TextField
                     type="email"
@@ -108,9 +139,10 @@ const Signup = () => {
                     Sign In
                   </Button>
                 </Grid>
-                <h3>
+
+                <Grid item>
                   <Link to="/login">Login</Link>
-                </h3>
+                </Grid>
               </Grid>
             </form>
           </Paper>

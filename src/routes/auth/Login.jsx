@@ -9,14 +9,12 @@ import {
 } from "@mui/material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import React, { useContext, useState } from "react";
-import { auth } from "../../firebase/Firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Login = () => {
   const navigate = useNavigate();
-  const [userNameDetails, setUserNameDetails] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [values, setValues] = useState({
@@ -32,19 +30,21 @@ const Login = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        setUserNameDetails(userCredential.user.email);
-        localStorage.setItem("key", userNameDetails);
-        console.log(userCredential);
-
-        window.location.reload(true);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    try {
+      await axios
+        .post("https://new-mediahub.onrender.com/api/v1/users/login", {
+          email,
+          password,
+        })
+        .then((res) => {
+          res.data ? navigate("/", { state: { id: email } }) : "";
+          console.log(res.data);
+        });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -58,7 +58,6 @@ const Login = () => {
           style={{ minHeight: "100vh" }}
         >
           <Paper elelvation={2} sx={{ padding: 5 }}>
-            <h3>KCF Video Library</h3>
             <form onSubmit={handleSubmit}>
               <h4>Login here</h4>
               <Grid container direction="column" spacing={2}>
@@ -108,12 +107,13 @@ const Login = () => {
 
                 <Grid item>
                   <Button type="submit" variant="outlined">
-                    Sign In
+                    Login
                   </Button>
                 </Grid>
-                <h3>
-                  Don't have an account? <Link to="/signup">Sign up here</Link>
-                </h3>
+
+                <Grid item>
+                  <Link to="/register">Sign up here</Link>
+                </Grid>
               </Grid>
             </form>
           </Paper>
