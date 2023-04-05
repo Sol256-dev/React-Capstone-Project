@@ -1,26 +1,23 @@
-import { useContext } from "react";
-// import "./App.css";
+// import { useContext } from "react";
 import Login from "./routes/auth/Login";
-import { Outlet } from "react-router-dom";
-import Home from "./routes/Home";
-import { UserContext } from "./UserContext";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 
 function App() {
-  const userEmail = useContext(UserContext);
-
+  const navigate = useNavigate();
+  const location = useLocation();
   return (
     <>
-      {userEmail == "" ? (
+      {location.state.id ? (
         <>
           <Navigation />
-          <Home />
+          <Outlet />
+          <Footer />
         </>
       ) : (
-        <Login />
+        navigate("/")
       )}
-      <Footer />
     </>
   );
 }

@@ -10,8 +10,6 @@ import {
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import React, { useContext, useState } from "react";
-import { auth } from "../../firebase/Firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
 import { Link } from "react-router-dom";
 
 const Signup = () => {
@@ -33,15 +31,23 @@ const Signup = () => {
 
   //   localStorage.setItem("key", userNameDetails);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        console.log(userCredential);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+
+    try {
+      await axios
+        .post("https://new-mediahub.onrender.com/api/v1/users/register", {
+          email,
+          password,
+        })
+        .then((res) => {
+          res.data
+            ? navigate("/login", { state: { id: email } })
+            : alert("Successful!");
+        });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -108,9 +114,6 @@ const Signup = () => {
                     Sign In
                   </Button>
                 </Grid>
-                <h3>
-                  <Link to="/login">Login</Link>
-                </h3>
               </Grid>
             </form>
           </Paper>
